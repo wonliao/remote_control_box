@@ -3,7 +3,9 @@ remote_control_box
 
 使用 mobile 遙控網頁所顯示的方塊. html5 + pre3d + websocket + node js
 
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/-qqQIr7wij4/0.jpg)](http://www.youtube.com/watch?v=-qqQIr7wij4)
+youtube 影片
+
+[![youtube 影片](http://img.youtube.com/vi/-qqQIr7wij4/0.jpg)](http://www.youtube.com/watch?v=-qqQIr7wij4)
 
 
 A、說明
