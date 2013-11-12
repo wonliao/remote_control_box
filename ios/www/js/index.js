@@ -121,6 +121,7 @@ var NetWork = {
 
 	testWebSocket: function()
 	{
+		// 請修正你的 ip
 		var wsUri = "ws://192.168.1.143:8000";
 		
 		console.log("NetWork testWebSocket" );
