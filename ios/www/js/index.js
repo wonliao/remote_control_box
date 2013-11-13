@@ -34,6 +34,10 @@ var app = {
     // The scope of `this` is the event. In order to call the `receivedEvent`
     // function, we must explicity call `app.receivedEvent(...);`
     onDeviceReady: function() {
+        
+        // 初始化
+        NetWork.initialize();
+
         app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
@@ -107,6 +111,10 @@ var app = {
 
 var NetWork = {
 	
+    websocket: null,
+    
+    wsUri: "ws://192.168.1.143:8000",   // 請修正你的 ip
+
 	initialize: function()
 	{
 		console.log("NetWork initialize" );
@@ -121,15 +129,12 @@ var NetWork = {
 
 	testWebSocket: function()
 	{
-		// 請修正你的 ip
-		var wsUri = "ws://192.168.1.143:8000";
-		
 		console.log("NetWork testWebSocket" );
-		websocket = new WebSocket(wsUri);
-		websocket.onopen = function(evt) { onOpen(evt) }; 
-		websocket.onclose = function(evt) { onClose(evt) }; 
-		websocket.onmessage = function(evt) { onMessage(evt) }; 
-		websocket.onerror = function(evt) { onError(evt) }; 
+		this.websocket = new WebSocket(this.wsUri); // 指定 IP
+		this.websocket.onopen = function(evt)       { this.onOpen(evt)      };  // 連線成功
+		this.websocket.onclose = function(evt)      { this.onClose(evt)     };  // 連線關閉
+		this.websocket.onmessage = function(evt)    { this.onMessage(evt)   };  // 接收到訊息
+		this.websocket.onerror = function(evt)      { this.onError(evt)     };  // 錯誤
 	},
 
 	onOpen: function(evt)
@@ -151,12 +156,12 @@ var NetWork = {
 	onError: function(evt)
 	{ 
 		console.log('ERROR:' + evt.data); 
-		websocket.close();
+		this.websocket.close();
 	}, 
 
 	doSend: function(message)
 	{ 
 		//console.log("SENT: " + message);
-		websocket.send(message); 
+		this.websocket.send(message); 
 	},
 };
